@@ -1,0 +1,228 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+@font-face {
+  font-family: 'New Hero';
+  src: url('./assets/fonts/NewHeroBold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'New Hero';
+  src: url('./assets/fonts/NewHeroMedium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'New Hero';
+  src: url('./assets/fonts/NewHeroRegular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@theme {
+  --font-serif-headline: "Cinzel", "EB Garamond", serif;
+  --font-serif-editorial: "Cormorant Garamond", "EB Garamond", serif;
+  --font-serif-garamond: "EB Garamond", serif;
+  --font-mono: "Space Mono", monospace;
+  --font-sans: "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+  --font-hero: "New Hero", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sf: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-offblack: #070707;
+  --color-subtle-gray: #71717a;
+  --color-botanical: #586445;
+  --color-icreon-blue: #386aff;
+}
+
+.font-sf {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body {
+  background-color: #ffffff;
+  color: #070707;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  background: transparent;
+}
+
+.headline-giant {
+  font-size: clamp(3.6rem, 13.8vw, 13.5rem);
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+}
+
+@keyframes liquidRefill {
+  0% {
+    clip-path: inset(100% 0 0 0);
+  }
+  100% {
+    clip-path: inset(0% 0 0 0);
+  }
+}
+
+.animate-refill {
+  animation: liquidRefill 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.preview-follower {
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Guillaume Zhu 3D Playground Sphere */
+.playground-sphere {
+  --card-width: clamp(340px, 20vw, 440px);
+  --caption-gap: 24px;
+  --media-radius: 10px;
+  --media-hover-scale: 1.06;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  background-color: #0A0A0A !important;
+  z-index: 150 !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 1400px) {
+  .playground-sphere {
+    --card-width: clamp(260px, 28vw, 380px);
+    --caption-gap: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .playground-sphere {
+    --card-width: clamp(140px, 42vw, 200px);
+    --caption-gap: 12px;
+    --media-radius: 8px;
+  }
+}
+
+.playground-sphere__container {
+  -webkit-user-select: none;
+  user-select: none;
+  perspective: 280vw;
+  perspective-origin: 50% 50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.playground-sphere__stage {
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.playground-sphere__media {
+  --card-height: calc(var(--card-width) * 0.72);
+  --click-scale: 1;
+  width: var(--card-width);
+  height: var(--card-height);
+  margin-left: calc(var(--card-width) * -0.5);
+  margin-top: calc(var(--card-height) * -0.5);
+  border-radius: var(--media-radius);
+  -webkit-user-select: none;
+  user-select: none;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.playground-sphere__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .playground-sphere__media:hover img {
+    transform: scale(var(--media-hover-scale));
+  }
+}
+
+/* 3D Floating Caption anchored below centered active card */
+.playground-sphere__caption {
+  text-align: center;
+  pointer-events: none;
+  width: min(90vw, 680px);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+  margin-left: calc(min(90vw, 680px) / -2);
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0.4s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+.playground-sphere__caption.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s;
+}
+
+.playground-sphere__caption-title {
+  font-family: var(--font-serif-headline), "Cinzel", "EB Garamond", serif;
+  font-size: clamp(20px, 2.2vw, 34px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+}
+
+.playground-sphere__caption-meta {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(10px, 0.9vw, 12px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 8px 0 0 0;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
+}
+
+.playground-sphere__caption-action {
+  margin-top: 14px;
+  pointer-events: auto;
+}

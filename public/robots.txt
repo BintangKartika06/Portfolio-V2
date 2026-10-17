@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bintang-portfolio.vercel.app/sitemap.xml
