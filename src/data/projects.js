@@ -59,7 +59,7 @@ export const projects = [
     summary: 'Comprehensive group portal connecting iconic beach venues, dining concepts, and hospitality operations across Bali.',
     description: 'Corporate hub and lifestyle portal showcasing the venues, culinary brands, and hospitality experiences across Bali 66 (Double Six Group).',
     liveUrl: 'https://bali66.com/',
-    tools: ['React', 'Tailwind CSS', 'GSAP'],
+    tools: ['Wordpress','React', 'Tailwind CSS', 'GSAP'],
     image: new URL('../assets/image_project/Bali66/Thumbnail_bali66.webp', import.meta.url).href,
     heroImage: new URL('../assets/image_project/Bali66/Preview Project.webp', import.meta.url).href,
     gallery: [
@@ -82,7 +82,7 @@ export const projects = [
     role: 'Full-stack Developer',
     summary: 'Architectural villa showcase and direct booking platform designed with immersive visual tours and smooth room selection.',
     description: 'Academic final project delivering a comprehensive villa reservation platform featuring room previews, interactive booking management, and luxury hospitality branding.',
-    tools: ['React.js', 'Laragon', 'Tailwind CSS'],
+    tools: ['React.js', 'Tailwind CSS'],
     image: new URL('../assets/image_project/Final Project Website Villa/Thumbnail.webp', import.meta.url).href,
     heroImage: new URL('../assets/image_project/Final Project Website Villa/Preview Project.webp', import.meta.url).href,
     gallery: [

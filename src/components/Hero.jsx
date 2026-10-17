@@ -94,9 +94,8 @@ export default function Hero({ isReady }) {
             >
               “
             </span>{' '}
-            wordpress by craft<br />
-            frontend by passion<br />
-            one clean site at a time
+            Turning complex ideas into simple,<br />
+            beautiful digital experiences.<br />
           </p>
         </div>
       </div>

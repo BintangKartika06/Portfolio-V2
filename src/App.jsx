@@ -308,7 +308,7 @@ function App() {
           <img
             src={logoLoadScreen}
             alt="Bintang Kartika Logo"
-            className="w-36 sm:w-44 md:w-52 h-auto object-contain brightness-0 invert opacity-90 select-none pointer-events-none"
+            className="w-36 sm:w-44 md:w-52 h-auto object-contain select-none pointer-events-none"
             draggable="false"
           />
         </div>

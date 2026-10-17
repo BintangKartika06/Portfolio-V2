@@ -93,10 +93,10 @@ export default function FullscreenNav({ isOpen, onClose, buttonCoords }) {
   }, [isOpen, buttonCoords])
 
   const menuItems = [
-    { number: '01', label: 'GITHUB', href: 'https://github.com' },
+    { number: '01', label: 'GITHUB', href: 'https://github.com/bintangkartika06' },
     { number: '02', label: 'UPWORK', href: 'https://upwork.com' },
-    { number: '03', label: 'LINKEDIN', href: 'https://linkedin.com' },
-    { number: '04', label: 'MAIL', href: 'mailto:contact@bintangkartika.com' },
+    { number: '03', label: 'LINKEDIN', href: 'https://linkedin.com/bintangkartika06' },
+    { number: '04', label: 'MAIL', href: 'mailto:bintangkartika3008@gmail.com' },
   ]
 
   return (

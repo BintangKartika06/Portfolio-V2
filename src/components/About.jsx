@@ -118,7 +118,7 @@ export default function About() {
           </div>
           <div ref={contactLinkRef} className="pt-1">
             <a
-              href="mailto:contact@bintangkartika.com"
+              href="mailto:bintangkartika3008@gmail.com"
               className="text-xs font-mono tracking-widest text-zinc-600 hover:text-black uppercase transition-colors inline-block"
             >
               [ CONTACT ]
