@@ -12,8 +12,10 @@ export default function FeaturedProjects({ onSelectProject }) {
   const pinnedSectionRef = useRef(null)
   const trackRef = useRef(null)
   const slideRefs = useRef([])
+  const cursorBadgeRef = useRef(null)
 
   useEffect(() => {
+    const cleanupFns = []
     const ctx = gsap.context(() => {
       const pinnedSection = pinnedSectionRef.current
       const track = trackRef.current
@@ -115,6 +117,59 @@ export default function FeaturedProjects({ onSelectProject }) {
           )
         }
       })
+
+      // Floating custom cursor follower for project thumbnails
+      const cursorBadge = cursorBadgeRef.current
+      if (cursorBadge && window.matchMedia('(pointer: fine)').matches) {
+        gsap.set(cursorBadge, {
+          xPercent: -50,
+          yPercent: -50,
+          scale: 0,
+          opacity: 0,
+        })
+
+        const xTo = gsap.quickTo(cursorBadge, 'x', { duration: 0.25, ease: 'power2.out' })
+        const yTo = gsap.quickTo(cursorBadge, 'y', { duration: 0.25, ease: 'power2.out' })
+
+        const handleMouseMove = (e) => {
+          xTo(e.clientX)
+          yTo(e.clientY)
+        }
+
+        const handleMouseEnter = (e) => {
+          xTo(e.clientX)
+          yTo(e.clientY)
+          gsap.to(cursorBadge, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.28,
+            ease: 'back.out(1.7)',
+            overwrite: 'auto',
+          })
+        }
+
+        const handleMouseLeave = () => {
+          gsap.to(cursorBadge, {
+            scale: 0.2,
+            opacity: 0,
+            duration: 0.2,
+            ease: 'power2.in',
+            overwrite: 'auto',
+          })
+        }
+
+        const assets = containerRef.current?.querySelectorAll('.cs-asset')
+        assets?.forEach((asset) => {
+          asset.addEventListener('mousemove', handleMouseMove)
+          asset.addEventListener('mouseenter', handleMouseEnter)
+          asset.addEventListener('mouseleave', handleMouseLeave)
+          cleanupFns.push(() => {
+            asset.removeEventListener('mousemove', handleMouseMove)
+            asset.removeEventListener('mouseenter', handleMouseEnter)
+            asset.removeEventListener('mouseleave', handleMouseLeave)
+          })
+        })
+      }
     }, containerRef)
 
     const timer = setTimeout(() => {
@@ -122,6 +177,7 @@ export default function FeaturedProjects({ onSelectProject }) {
     }, 250)
 
     return () => {
+      cleanupFns?.forEach((fn) => fn())
       clearTimeout(timer)
       ctx.revert()
     }
@@ -135,6 +191,20 @@ export default function FeaturedProjects({ onSelectProject }) {
       style={{ fontFamily: 'var(--font-sf)' }}
       data-purpose="featured-projects-experience"
     >
+      {/* Floating Custom Cursor Follower for Thumbnails (Matches screenshot) */}
+      <div
+        ref={cursorBadgeRef}
+        className="fixed top-0 left-0 pointer-events-none z-[150] hidden lg:flex items-center justify-center opacity-0 scale-0 will-change-transform"
+      >
+        <div className="bg-[#242424]/95 backdrop-blur-md text-white px-5 py-2.5 rounded-full shadow-[0_12px_32px_rgba(0,0,0,0.55)] border border-white/10 select-none">
+          <span
+            className="text-xs font-semibold tracking-wider uppercase font-sf text-zinc-100"
+            style={{ fontFamily: 'var(--font-sf)' }}
+          >
+            VIEW PROJECT
+          </span>
+        </div>
+      </div>
       {/* 
         Introductory Section matching "Sebelum masuk page.png" & "Screenshot 2026-09-23 204503.png"
       */}
@@ -195,7 +265,7 @@ export default function FeaturedProjects({ onSelectProject }) {
                 <div className="w-full lg:col-span-6 order-1 lg:order-2 flex items-center justify-center">
                   <div
                     onClick={() => onSelectProject?.(project)}
-                    className="cs-asset w-full h-[30vh] sm:h-[38vh] md:h-[45vh] lg:h-[82vh] max-h-[85vh] overflow-hidden bg-zinc-100 cursor-pointer rounded-none shadow-xs"
+                    className="cs-asset w-full h-[30vh] sm:h-[38vh] md:h-[45vh] lg:h-[82vh] max-h-[85vh] overflow-hidden bg-zinc-100 cursor-pointer lg:cursor-none rounded-none shadow-xs"
                   >
                     <img
                       src={project.image}
