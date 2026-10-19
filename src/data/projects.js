@@ -104,7 +104,7 @@ export const projects = [
     category: 'Academic & Registration System',
     year: '2026',
     subtitle: 'Online Admission Portal',
-    role: 'Back-end Developer',
+    role: 'Backend Developer',
     summary: 'An interactive and responsive online registration portal designed to streamline student admissions with structured multi-step validation and intuitive form UX.',
     description: 'A comprehensive student admission and enrollment interface engineered to simplify academic onboarding. Built with real-time field validation, clean data capture layouts, and accessible input components to ensure a seamless registration journey for prospective students.',
     tools: ['PHP', 'Laragon'],
