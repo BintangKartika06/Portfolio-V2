@@ -61,7 +61,7 @@ export default function Hero({ isReady }) {
       {/* Top: Available for freelance badge (elevated up towards header) */}
       <div
         ref={availableRef}
-        className={`text-center w-full -mt-2 sm:-mt-8 lg:-mt-10 mb-4 sm:mb-6 transition-opacity duration-300 ${
+        className={`text-center w-full -mt-2 sm:-mt-8 lg:-mt-10 mb-4 sm:mb-6 ${
           isReady ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -80,7 +80,7 @@ export default function Hero({ isReady }) {
       <div className="flex-grow flex items-center justify-start w-full my-6 sm:my-10">
         <div
           ref={quoteRef}
-          className={`transition-opacity duration-300 max-w-xl ${
+          className={`max-w-xl ${
             isReady ? 'opacity-100' : 'opacity-0'
           }`}
         >
@@ -103,7 +103,7 @@ export default function Hero({ isReady }) {
       {/* Above Headline: Web Developer label */}
       <div
         ref={webDevRef}
-        className={`text-center w-full mb-3 md:mb-5 transition-opacity duration-300 ${
+        className={`text-center w-full mb-3 md:mb-5 ${
           isReady ? 'opacity-100' : 'opacity-0'
         }`}
       >

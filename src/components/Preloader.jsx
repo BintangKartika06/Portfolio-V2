@@ -90,7 +90,7 @@ export default function Preloader({ onComplete }) {
               if (onCompleteRef.current) {
                 onCompleteRef.current()
               }
-            }, 120)
+            }, 200)
           },
           onComplete: () => {
             setIsHidden(true)
@@ -113,17 +113,17 @@ export default function Preloader({ onComplete }) {
     >
       <div
         ref={curtainBlackRef}
-        className="absolute inset-0 bg-[#070707] will-change-transform z-10"
+        className="absolute inset-0 bg-[#070707] will-change-transform transform-gpu z-10"
       />
 
       <div
         ref={curtainZincRef}
-        className="absolute inset-0 bg-zinc-900 will-change-transform z-20 border-b border-white/5"
+        className="absolute inset-0 bg-zinc-900 will-change-transform transform-gpu z-20 border-b border-white/5"
       />
 
       <div
         ref={curtainWhiteRef}
-        className="absolute inset-0 bg-white flex items-center justify-center will-change-transform z-30 shadow-md"
+        className="absolute inset-0 bg-white flex items-center justify-center will-change-transform transform-gpu z-30 border-b border-black/5"
       >
         <div
           ref={logoWrapperRef}

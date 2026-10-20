@@ -88,7 +88,7 @@ function App() {
     setIsReady(true)
     setTimeout(() => {
       ScrollTrigger.refresh()
-    }, 120)
+    }, 800)
   }
 
   // Navigation: Forward uses Curtain Transition; Back uses Option 1 (Soft Clean Fade)

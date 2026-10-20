@@ -46,7 +46,7 @@ export default function Header({ isNavOpen, onToggleMenu, isReady, onHomeClick }
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-[120] h-20 flex items-center justify-between px-6 sm:px-10 md:px-14 lg:px-20 bg-transparent pointer-events-none mix-blend-difference transition-opacity duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[120] h-20 flex items-center justify-between px-6 sm:px-10 md:px-14 lg:px-20 bg-transparent pointer-events-none mix-blend-difference ${
         isReady ? 'opacity-100' : 'opacity-0'
       }`}
       data-purpose="top-navigation"
